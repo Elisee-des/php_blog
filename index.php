@@ -8,7 +8,7 @@ include "includes/navbar.php";
 
 ?>
 
-<p>Contenu de la page dd'accueil</p>
+<p>Contenu de la page d'accueil</p>
 
 <?php
 
