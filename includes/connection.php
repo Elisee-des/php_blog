@@ -55,9 +55,9 @@
         //SUPPRESSION des donnees
         $sql = "DELETE FROM `users` WHERE id=4";
 
-        $requete = $db->query($sql);
+        // $requete = $db->query($sql);
 
-        echo $requete->rowCount();
+        // echo $requete->rowCount();
     
         // echo "<pre>";
     
