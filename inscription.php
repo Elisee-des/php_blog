@@ -23,11 +23,25 @@ if (!empty($_POST)) {
             VALUES (:pseudo, :email, '$password', '[\"ROLE_USER\"]')";
 
         $query = $db->prepare($sql);
-        
+
         $query->bindValue(":pseudo", $pseudo, PDO::PARAM_STR);
         $query->bindValue(":email", $email, PDO::PARAM_STR);
 
+        //on recupere le id l'utilisateur
+        $id = $db->lastInsertId();
         $query->execute();
+
+        //on connectera l'utilsateur
+        //on demarre la session en php
+
+        session_start();
+        //on stocke le information de l'utilisateur dans $_SESSION
+        $_SESSION["user"] = [
+            "id" => $id,
+            "username" => $pseudo,
+            "email" => $email,
+            "roles" => $user["ROLE_USER"],
+        ];
 
     } else {
         die("Remplissez tout les champs");

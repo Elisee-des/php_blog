@@ -6,6 +6,7 @@
         <li><a href="">Contact</a></li>
         <li><a href="articles.php">Articles</a></li>
         <li><a href="inscription.php">Inscription</a></li>
+        <li><a href="connexion.php">Connexion</a></li>
     </ul>
 </nav>
 </header>
