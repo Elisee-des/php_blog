@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <?php
+<?php
 
     define('DBHOST', 'localhost');
     define('DBUSER', 'root');
@@ -33,40 +22,38 @@
         die("Erreur:" . $e->getMessage());
     }
 
-        //ici on nai connecter
-        $sql = "SELECT * FROM `users` WHERE id=1";
+    //ici on nai connecter
+    $sql = "SELECT * FROM `users` WHERE id=1";
 
-        $requete = $db->query($sql);
+    $requete = $db->query($sql);
 
-        //Affichage les data de la base de donner
-        // $user = $requete->fetch();
+    //Affichage les data de la base de donner
+    // $user = $requete->fetch();
 
-        //Ajoute des data a la de donnee
-        $sql = "INSERT INTO `users`(`email`, `password`, `roles`) VALUES 
-        ('user3@gmail.com', 'user3', '[\"ROLE_USER\"]')";
+    //Ajoute des data a la de donnee
+    $sql = "INSERT INTO `users`(`email`, `password`, `roles`) VALUES 
+        ('user2@gmail.com', 'user2', '[\"ROLE_USER\"]')";
 
-        // $requete = $db->query($sql);
+    // $requete = $db->query($sql);
 
-        //Modification de donnees
-        $sql = "UPDATE `users` SET `email`='user3@gmail.com' WHERE id=5";
+    // $id = $db->lastInsertId();
 
-        // $requete = $db->query($sql);
+    // die("ajouter avec success a la ligne $id");
 
-        //SUPPRESSION des donnees
-        $sql = "DELETE FROM `users` WHERE id=4";
+    //Modification de donnees
+    $sql = "UPDATE `users` SET `email`='user3@gmail.com' WHERE id=5";
 
-        // $requete = $db->query($sql);
+    // $requete = $db->query($sql);
 
-        // echo $requete->rowCount();
-    
-        // echo "<pre>";
-    
-        // var_dump($user);
-    
-        // echo "</pre>";
+    //SUPPRESSION des donnees
+    $sql = "DELETE FROM `users` WHERE id=4";
 
-    ?>
+    // $requete = $db->query($sql);
 
-</body>
+    // echo $requete->rowCount();
 
-</html>
+    // echo "<pre>";
+
+    // var_dump($user);
+
+    // echo "</pre>";

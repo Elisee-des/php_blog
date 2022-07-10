@@ -5,6 +5,7 @@
         <li><a href="index.php">Accueil </a></li>
         <li><a href="">Contact</a></li>
         <li><a href="articles.php">Articles</a></li>
+        <li><a href="inscription.php">Inscription</a></li>
     </ul>
 </nav>
 </header>
