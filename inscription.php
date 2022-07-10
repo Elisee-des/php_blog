@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (isset($_SESSION["user"])) {
+    header("Location: profil.php");
+    exit;
+}
 
 if (!empty($_POST)) {
     //s'il n'est pas vide
@@ -34,7 +40,7 @@ if (!empty($_POST)) {
         //on connectera l'utilsateur
         //on demarre la session en php
 
-        session_start();
+        
         //on stocke le information de l'utilisateur dans $_SESSION
         $_SESSION["user"] = [
             "id" => $id,
@@ -42,6 +48,8 @@ if (!empty($_POST)) {
             "email" => $email,
             "roles" => $user["ROLE_USER"],
         ];
+
+        header("Location: profil.php");
 
     } else {
         die("Remplissez tout les champs");

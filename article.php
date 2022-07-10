@@ -1,4 +1,5 @@
 <?php
+session_start();
 //on verifie si on a un id
 if (!isset($_GET["id"]) || empty($_GET["id"])) {
     //La on na pas de id

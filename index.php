@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $titre = "Accueil";
 
@@ -8,7 +9,6 @@ include "includes/navbar.php";
 
 ?>
 
-<p>Contenu de la page d'accueil</p>
 
 <?php
 
@@ -33,11 +33,11 @@ $requete->execute();
 
 $user = $requete->fetchAll();
 
-echo "<pre>";
+// echo "<pre>";
 
-var_dump($user);
+// var_dump($user);
 
-echo "</pre>";
+// echo "</pre>";
 
 include "includes/footer.php";
 

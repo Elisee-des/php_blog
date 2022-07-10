@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+
+if (isset($_SESSION["user"])) {
+    header("Location: profil.php");
+    exit;
+}
+
 if (!empty($_POST)) {
     //s'il n'est pas vide
     if (

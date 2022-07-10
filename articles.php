@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 //on va chercher les articles dans la base
 require_once "includes/connection.php";
 
