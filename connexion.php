@@ -17,51 +17,56 @@ if (!empty($_POST)) {
 
         $email = $_POST["email"];
 
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-        {
+        $_SESSION["error"] = [];
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             //email invalide
-            die("Email incorrect");
-        }
-        //on se connecte a la base de donnee
-        require_once "includes/connection.php";
-
-        $sql = "SELECT * FROM `users` WHERE `email` = :email";
-
-        $query = $db->prepare($sql);
-
-        $query->bindValue(":email", $email, PDO::PARAM_STR);
-
-        $query->execute();
-
-        $user = $query->fetch();
-
-        if(!$user)
-        {
-            die("Mot de passe ou identifiant incorrect");
-        }
-        
-        if(!password_verify($_POST["password"], $user["password"]))
-        {
-            die("Mot de passe ou identifiant incorrect");
+            $_SESSION["error"][] = "Email incorrect";
         }
 
-        //Ici l'utilisateur et le mot de passe sont correct
-        //On va pouvoir connecter l'utilisateur
 
-        session_start();
-        $_SESSION["user"] = [
-            "id" => $user["id"],
-            "username" => $user["username"],
-            "email" => $user["email"],
-            "roles" => $user["roles"],
-        ];
+        if ($_SESSION["error"] === []) {
 
-        //une fois le formulaire valider, la session ouvert, on redirige l'utilsateur
-        header("Location: profil.php");
+            //on se connecte a la base de donnee
+            require_once "includes/connection.php";
 
-    }else {
+            $sql = "SELECT * FROM `users` WHERE `email` = :email";
+
+            $query = $db->prepare($sql);
+
+            $query->bindValue(":email", $email, PDO::PARAM_STR);
+
+            $query->execute();
+
+            $user = $query->fetch();
+
+            if (!$user) {
+                $_SESSION["error"][] = "Mot de passe ou identifiant incorrect";
+            }
+
+            if (!password_verify($_POST["password"], $user["password"])) {
+                $_SESSION["error"][] = "Mot de passe ou identifiant incorrect";
+            }
+
+            //Ici l'utilisateur et le mot de passe sont correct
+            //On va pouvoir connecter l'utilisateur
+            if ($_SESSION["error"] === []) {
+
+                session_start();
+                $_SESSION["user"] = [
+                    "id" => $user["id"],
+                    "username" => $user["username"],
+                    "email" => $user["email"],
+                    "roles" => $user["roles"],
+                ];
+
+                //une fois le formulaire valider, la session ouvert, on redirige l'utilsateur
+                header("Location: profil.php");
+            }
+        }
+    } else {
         //formulaire incommplet
-        die("Formulaire incorrect");
+        $_SESSION["error"][] = "Formulaire incorrect";
     }
 }
 
@@ -76,6 +81,19 @@ include "includes/navbar.php";
 
 <div class="container">
     <h2>Inscription</h2>
+
+    <?php
+
+    if (isset($_SESSION["error"])) {
+        foreach ($_SESSION["error"] as $message) {
+    ?>
+            <p><?= $message ?></p>
+    <?php
+        }
+        unset($_SESSION["error"]);
+    }
+    ?>
+
     <form method="POST">
         <div>
             <div>

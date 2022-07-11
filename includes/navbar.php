@@ -5,6 +5,7 @@
         <li><a href="index.php">Accueil </a></li>
         <li><a href="">Contact</a></li>
         <li><a href="articles.php">Articles</a></li>
+        <li><a href="upload.php">Upload de fichier</a></li>
         <?php if (isset($_SESSION["user"])) : ?>
             <li><a href="deconnexion.php">Deconnexion</a></li>
             <?php else : ?>
